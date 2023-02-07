@@ -29,3 +29,10 @@
     }    
     reverse_proxy pushgateway:9091
 }
+
+:8500 {
+    basicauth /* {
+        {$ADMIN_USER} {$ADMIN_PASSWORD_HASH}
+    }    
+    reverse_proxy consul:8500
+}

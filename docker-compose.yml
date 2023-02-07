@@ -5,8 +5,9 @@ networks:
     driver: bridge
 
 volumes:
-    prometheus_data: {}
-    grafana_data: {}
+  prometheus_data: {}
+  grafana_data: {}
+  consul_data: {}
 
 services:
 
@@ -117,6 +118,20 @@ services:
     labels:
       org.label-schema.group: "monitoring"
 
+  consul:
+    image: consul:1.14.4
+    container_name: consul
+    command: consul agent -server -ui -bind=0.0.0.0 -client=0.0.0.0 -bootstrap-expect 1 -data-dir /consul/data
+    restart: unless-stopped
+    expose:
+      - 8500
+      - 8600
+    volumes:
+      - consul_data:/consul/data
+    networks:
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"
   caddy:
     image: caddy:2.6.2
     container_name: caddy
@@ -126,6 +141,7 @@ services:
       - "9090:9090"
       - "9093:9093"
       - "9091:9091"
+      - "8500:8500"
     volumes:
       - ./caddy:/etc/caddy
     environment:
