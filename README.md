@@ -3,7 +3,14 @@
 > This repo forked from [dockprom](https://github.com/stefanprodan/dockprom)
 
 This project consists of the commonly used components.
+
 Quick start all components in one step.
+
+## Start
+
+```shell
+ADMIN_USER='admin' ADMIN_PASSWORD='admin' ADMIN_PASSWORD_HASH='$2a$14$1l.IozJx7xQRVmlkEQ32OeEEfP5mRxTpbDTCTcXRqn19gXD8YK1pO' docker-compose up -d
+```
 
 ## Consul
 
