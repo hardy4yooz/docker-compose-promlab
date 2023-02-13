@@ -153,3 +153,33 @@ services:
       - monitor-net
     labels:
       org.label-schema.group: "monitoring"
+
+  http_sd_server:
+    build:
+      context: ./http_sd_server
+      dockerfile: Dockerfile
+
+    networks:
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"
+
+  http_service1:
+    build:
+      context: ./services/go-gin-demo1
+      dockerfile: Dockerfile
+
+    networks:
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"
+
+  http_service2:
+    build:
+      context: ./services/go-gin-demo2
+      dockerfile: Dockerfile
+
+    networks:
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"

@@ -39,6 +39,13 @@ scrape_configs:
       - server: "consul:8500"
         services: []
 
+  #  config for http_sd
+  - job_name: "http_sd_server"
+    metrics_path: "/metrics"
+    scheme: "http"
+    http_sd_configs:
+      - url: "http://http_sd_server:5000/targets"
+
 alerting:
   alertmanagers:
     - scheme: http
