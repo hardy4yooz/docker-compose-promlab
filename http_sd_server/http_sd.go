@@ -1,8 +1,10 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
+	"fmt"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -10,6 +12,9 @@ func main() {
 
 	// router for http sd
 	r.GET("/targets", func(c *gin.Context) {
+		// get params
+		biz := c.Query("biz")
+		fmt.Println("biz:" + biz)
 		targets := []struct {
 			Targets []string          `json:"targets"`
 			Labels  map[string]string `json:"labels"`

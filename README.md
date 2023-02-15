@@ -6,6 +6,11 @@ This project consists of the commonly used components.
 
 Quick start all components in one step.
 
+## Addon features
+
+- Service discovery  with `consul`
+- Service discovery with `http_sd_config`
+
 ## Start
 
 ```shell
@@ -49,4 +54,16 @@ curl \
     consul_sd_configs:
     - server: 'consul:8500'
       services: []
+```
+
+## FAQ
+
+### How to update the alert rule in runtime?
+
+- Save well-formed alert rules in a local file.
+- Call the `reload` API to restart the Prometheus process.
+
+``` shell
+curl -X POST -H "Content-Type: application/json" --header 'Authorization: Basic YWRtaW46YWRtaW4='  http://localhost:9090/-/reload
+
 ```
